@@ -34,6 +34,21 @@ public struct WiremockClient {
         request.httpMethod = RequestMethod.DELETE.rawValue
         makeSynchronousRequest(request: request, errorMessagePrefix: "Error deleting mapping")
     }
+
+    public static func startRecording(targetURL: String) {
+      guard let url = URL(string: "\(baseURL)/__admin/recordings/start/") else {return}
+             var request = URLRequest(url: url)
+             request.httpMethod = RequestMethod.POST.rawValue
+             request.httpBody = "\"targetBaseUrl\":\"\(targetURL)\"".data(using: .utf8)
+             makeSynchronousRequest(request: request, errorMessagePrefix: "Error starting recording")
+    }
+
+    public static func stopRecording() {
+      guard let url = URL(string: "\(baseURL)/__admin/recordings/stop/") else {return}
+             var request = URLRequest(url: url)
+             request.httpMethod = RequestMethod.POST.rawValue
+             makeSynchronousRequest(request: request, errorMessagePrefix: "Error stopping recording")
+    }
     
     /// Synchrounous call to the server to see if it is up and running
     /// If there is a mappings element returned, and no error, we should be good.
