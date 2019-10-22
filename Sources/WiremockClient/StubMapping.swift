@@ -136,6 +136,7 @@ public class StubMapping {
     let keyCookies          = "cookies"
     let keyBasicAuth        = "basicAuthCredentials"
     let keyBodyPatterns     = "bodyPatterns"
+    let keyFixedDelayMS     = "fixedDelayMilliseconds"
     
     internal func asData() -> Data? {
         
@@ -250,6 +251,13 @@ public class StubMapping {
             if let headers = response.headers {
                 responseDict[keyHeaders] = headers
             }
+
+            // Fixed Delay
+
+            if let fixedDelay = response.fixedDelayMS {
+                responseDict[keyFixedDelayMS] = fixedDelay
+            }
+
         }
         
         mappingDict[keyResponse] = responseDict

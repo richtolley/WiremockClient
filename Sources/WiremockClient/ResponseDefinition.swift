@@ -35,6 +35,7 @@ public class ResponseDefinition {
     var proxyBaseUrl: String?
     var bodyFileName: String?
     var headers: [String: String]?
+    var fixedDelayMS: Int?
     
     public var json: [String: Any]?
     public var data: Data?
@@ -64,6 +65,11 @@ public class ResponseDefinition {
     public func withStatusMessage(_ statusMessage: String) -> ResponseDefinition {
         self.statusMessage = statusMessage
         return self
+    }
+
+    public func withFixedDelay(_ delayMS: Int) -> ResponseDefinition {
+      self.fixedDelayMS = delayMS
+      return self
     }
     
     public func withBody(_ body: Any) -> ResponseDefinition {
