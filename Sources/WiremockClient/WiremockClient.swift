@@ -36,7 +36,7 @@ public struct WiremockClient {
     }
 
     public static func startRecording(targetURL: String) {
-      guard let url = URL(string: "\(baseURL)/__admin/recordings/start/") else {return}
+      guard let url = URL(string: "\(baseURL)/__admin/recordings/start") else {return}
              var request = URLRequest(url: url)
              request.httpMethod = RequestMethod.POST.rawValue
              request.httpBody = "\"targetBaseUrl\":\"\(targetURL)\"".data(using: .utf8)
@@ -44,7 +44,7 @@ public struct WiremockClient {
     }
 
     public static func stopRecording() {
-      guard let url = URL(string: "\(baseURL)/__admin/recordings/stop/") else {return}
+      guard let url = URL(string: "\(baseURL)/__admin/recordings/stop") else {return}
              var request = URLRequest(url: url)
              request.httpMethod = RequestMethod.POST.rawValue
              makeSynchronousRequest(request: request, errorMessagePrefix: "Error stopping recording")
